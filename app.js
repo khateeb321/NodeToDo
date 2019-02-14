@@ -1,5 +1,17 @@
+const http = require('http');
 var fs = require('fs');
 
-fs.readFile('README.md', 'utf8', function(err, data){
-    console.log(data);
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html');
+  
+  var rs = fs.createReadStream(__dirname + '/index.html', 'utf8');
+  rs.pipe(res);
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 });
