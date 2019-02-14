@@ -1,5 +1,5 @@
 var fs = require('fs');
 
-var readMe = fs.readFileSync('README.md', 'utf8');
-
-fs.writeFileSync('newreadme.txt', readMe);
+fs.readFile('README.md', 'utf8', function(err, data){
+    console.log(data);
+});
